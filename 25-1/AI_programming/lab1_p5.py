@@ -1,7 +1,7 @@
 def output(number):
     str_number = str(number)
     space = 6 - len(str_number)
-    if (space < 6) & (space > 0):
+    if (space < 6) and (space > 0):
         return (' ' * space) + str_number
     else:
         return str_number

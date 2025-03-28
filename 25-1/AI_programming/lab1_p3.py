@@ -1,23 +1,32 @@
-input1 = int(input('Input integer 1: '))
-input2 = int(input('Input integer 2: '))
+num_lst = []
 
-if input1 > input2:
-    num1 = input1
-    num2 = input2
+while True:
+    user_input = int(input('Your number: '))
+    if user_input == 0:
+        break
+    else:
+        num_lst.append(user_input)
+        
+
+lst_pos = []
+lst_neg = []
+
+for i in num_lst:
+    if abs(i) <= 100:
+        if i > 0:
+            lst_pos.append(i)
+        elif i < 0:
+            lst_neg.append(i)
+    else:
+        continue
+
+if len(lst_pos) == 0:
+    print('No positive integer entered')
 else:
-    num1 = input2
-    num2 = input1
-
-share = num1 // num2
-remainder = num1 % num2
-
-while remainder != 0:
-    num1 = num2
-    num2 = remainder
-    share = num1 // num2
-    remainder = num1 % num2
+    print(f'There are {len(lst_pos)} positive integer(s) and the sum is {sum(lst_pos)}')
     
-gcd = num2
-lcm = int(input1 * input2 / gcd)
+if len(lst_neg) == 0:
+    print('No negative integer entered')
+else:
+    print(f'There are {len(lst_neg)} negative integer(s) and the sum is {sum(lst_neg)}')
 
-print(f'The least common multiple of {input1} and {input2} is {lcm}')
