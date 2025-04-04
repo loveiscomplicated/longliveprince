@@ -37,7 +37,7 @@ class Scores{
 
 Scores::Scores(int maxEnt) {
   maxEntries = maxEnt;
-  entries = new GameEntry[maxEntries];
+  GameEntry* entries = new GameEntry[maxEntries];
   numEntries = 0;
 }
 
@@ -57,11 +57,12 @@ void Scores::add(const GameEntry& e) {
   int i = numEntries - 2;
   while (i >= 0 && entries[i].getScore() < newScore) {
     entries[i + 1] = entries [i];
+    i--;
   }
   entries[i + 1] = e;
 }
 
-GameEntry Scores::remove(int i) throw(IndexOutOfBounds) { // IndexOutOfBounds 정의 안 해서 오류 남
+// GameEntry Scores::remove(int i) throw(IndexOutOfBounds) { // IndexOutOfBounds 정의 안 해서 오류 남
   if ((i < 0) || (i >= numEntries)) {
     throw IndexOutOfBound("Invalid index");
   GameEntry e = entries[i];
