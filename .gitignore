@@ -8,3 +8,4 @@ beakjoon/C++/1806
 .vscode/launch.json
 .vscode/settings.json
 >>>>>>> origin/main
+*.Identifier
