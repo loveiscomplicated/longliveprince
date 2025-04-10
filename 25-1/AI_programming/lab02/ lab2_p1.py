@@ -1,6 +1,7 @@
 size = int(input("Enter a size: "))
 direction = input("Enter a direction: ")
 
+
 if direction == 'l':
     # star_arr is the list of number of stars that has to be printed in each line.
     # ex) if (direnction == 'l') and (size == 3), then star_arr == [1, 2, 3, 2, 1]
@@ -31,5 +32,5 @@ elif direction == 'd':
     star_arr = range(size*2 - 1, 0, -2)
     
     for index in range(size): # not necessary to make space_arr since it's same as range(size)
-        line = ' ' * index + '*' * star_arr # so we use index instead
+        line = ' ' * index + '*' * star_arr[index] # so we use index instead
         print(line)
