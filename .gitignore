@@ -9,3 +9,4 @@ beakjoon/C++/1806
 .vscode/settings.json
 >>>>>>> origin/main
 *.Identifier
+*.json
