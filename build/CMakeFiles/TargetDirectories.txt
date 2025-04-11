@@ -1,0 +1,3 @@
+/home/loveiscomplicated/github_repo/longliveprince/build/CMakeFiles/runTests.dir
+/home/loveiscomplicated/github_repo/longliveprince/build/CMakeFiles/edit_cache.dir
+/home/loveiscomplicated/github_repo/longliveprince/build/CMakeFiles/rebuild_cache.dir

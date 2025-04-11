@@ -12,3 +12,5 @@ add_executable(runTests test_runner.cc)
 
 # Link libraries
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
+
+

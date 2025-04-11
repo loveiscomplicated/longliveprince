@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g CMakeFiles/runTests.dir/test_runner.cc.o -o runTests  -Wl,-rpath,/home/loveiscomplicated/miniconda3/lib /home/loveiscomplicated/miniconda3/lib/libgtest.so.1.11.0 -lpthread 
