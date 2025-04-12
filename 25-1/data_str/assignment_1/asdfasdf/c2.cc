@@ -9,7 +9,7 @@ char kthCharacter(long long k, std::vector<int>& operations) {
 	while (!operations.empty()) {
 		length /= 2;
 		int elem = getBackAndPop(operations);
-		char whichPart = frontOrBack(k, power2(operations.size()));
+		char whichPart = frontOrBack(k, length * 2);
 
 		if ((elem == 1) && (whichPart == 'b')) {
 			changes++;
