@@ -62,7 +62,7 @@ int fly(int a,int b) {
 	int result = 0;
 	if (sqrtDist == sqrtDistInt) {
 		result = (sqrtDistInt * 2) - 1;
-	} else if ((dist > pow(sqrtDistInt, 2)) && (dist < sqrtDistInt * (sqrtDistInt + 1))) {
+	} else if ((dist > pow(sqrtDistInt, 2)) && (dist <= sqrtDistInt * (sqrtDistInt + 1))) {
 		result = (sqrtDistInt * 2);
 	} else {
 		result = (sqrtDistInt * 2) + 1;
