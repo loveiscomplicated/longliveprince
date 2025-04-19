@@ -1,46 +1,107 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>전화번호 입력</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .error-message {
-            color: red;
-            font-size: 14px;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="HTML, Learning, Yonsei, CAS2109-01">
+  <meta name="description" content="This is a practice HTML document covering all concepts from CH02-Basic HTML.">
+  <title>HTML Basic Practice</title>
 </head>
 <body>
 
-    <h2>전화번호 입력</h2>
-    <form>
-        <label for="phone">전화번호:</label>
-        <input type="tel" id="phone" name="phone" placeholder="###-###-####" 
-               pattern="\(\d{3}\) \d{3}-\d{4}" required>
-        <span class="error-message">요청한 형식과 일치시키세요.</span>
-        <br><br>
-        <button type="submit">제출</button>
-    </form>
+  <h1 id="top">HTML Basic Practice</h1>
+  <h2>1. Headings</h2>
+  <h3>h3 Heading</h3>
+  <h4>h4 Heading</h4>
+  <h5>h5 Heading</h5>
+  <h6>h6 Heading</h6>
 
-    <script>
-        document.querySelector("form").addEventListener("submit", function(event) {
-            var phoneInput = document.getElementById("phone");
-            var errorMessage = document.querySelector(".error-message");
-            
-            if (!phoneInput.checkValidity()) {
-                errorMessage.style.display = "inline";
-                event.preventDefault();
-            } else {
-                errorMessage.style.display = "none";
-            }
-        });
-    </script>
+  <h2>2. Paragraph and Line Break</h2>
+  <p>This is a paragraph of text.<br>And this line is after a break.<br>
+  </p>
+
+  <h2>3. Hyperlinks</h2>
+  <p>Visit <a href="https://www.yonsei.ac.kr">Yonsei University</a> homepage.</p>
+  <p>Best practice: Use descriptive link text like
+    <a href="https://www.nngroup.com/articles/writing-links/">Writing Better Links</a>.
+  </p>
+
+  <h2>4. Image</h2>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Yonsei_University_logo.svg"
+       alt="Yonsei University Logo" width="200">
+
+  <h2>5. Special Characters</h2>
+  <p>Use &lt; and &gt; to display angle brackets.</p>
+  <p>Use &amp; for an ampersand.</p>
+  <p>Use &nbsp; for a non-breaking space.</p>
+  <hr>
+
+  <h2>6. Lists</h2>
+  <h3>Unordered List</h3>
+  <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+
+  <h3>Ordered List</h3>
+  <ol>
+    <li>Step 1</li>
+    <li>Step 2</li>
+  </ol>
+
+  <h2>7. Table</h2>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th colspan="2">Contact</th>
+    </tr>
+    <tr>
+      <td>Kim</td>
+      <td>Email</td>
+      <td>kim@example.com</td>
+    </tr>
+    <tr>
+      <td rowspan="2">Lee</td>
+      <td>Phone</td>
+      <td>010-1234-5678</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>lee@example.com</td>
+    </tr>
+  </table>
+
+  <h2>8. Form</h2>
+  <form action="/submit" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" size="25" maxlength="30"><br><br>
+
+    <label for="bio">Bio:</label><br>
+    <textarea id="bio" name="bio" rows="4" cols="40">Introduce yourself here...</textarea><br><br>
+
+    <label>Password:</label>
+    <input type="password" name="pw"><br><br>
+
+    <label>Hobbies:</label><br>
+    <input type="checkbox" name="hobby" value="reading"> Reading<br>
+    <input type="checkbox" name="hobby" value="music"> Music<br><br>
+
+    <label>Gender:</label><br>
+    <input type="radio" name="gender" value="male"> Male<br>
+    <input type="radio" name="gender" value="female"> Female<br><br>
+
+    <label for="city">City:</label>
+    <select name="city" id="city">
+      <option value="seoul">Seoul</option>
+      <option value="busan">Busan</option>
+    </select><br><br>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+  </form>
+
+  <h2 id="section9">9. Internal Links</h2>
+  <p><a href="#top">Back to Top</a></p>
 
 </body>
 </html>

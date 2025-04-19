@@ -9,7 +9,7 @@ int main() {
   string a = "as";
   string b = "sg";
 
-  cout << a + b << endl;
+  cout << typeid(a[1]).name() << endl;
   
   double h = 12.13;
   int j_int = floor(h);
