@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <iterator>
 
 using namespace std;
 
@@ -12,11 +13,22 @@ void bfs(vector<vector<int>> graph, int numstart) {
   
 }
 
-void quickSort(vector<int> v) {
-  int pivot = v[0]; // 맨 처음 원소를 pivot으로 잡음
-  vector<int>::iterator iter1 = v.begin() + 1;
+void quickSort(vector<int> &v, int left, int right) {
+  /*
+  left: pivot 포함 가장 왼쪽 인덱스
+  right: pivot이랑 비교할 가장 오른쪽 인덱스
+  */
+  
+  
   
 }
+
+void swap(vector<int> &v, int idx1, int idx2) {
+  int temp = v[idx1];
+  v[idx1] = v[idx2];
+  v[idx2] = temp;
+}
+
 int main() {
   int node, edge, numStart;
   cin >> node >> edge >> numStart;
