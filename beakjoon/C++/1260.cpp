@@ -61,7 +61,6 @@ class queue {
     count = 0;
   }
 
-
   void push(int elem) {
     if (count == size) {
       cout << "the queue is fully occupied" << endl;
@@ -93,33 +92,53 @@ class queue {
 
 };
 
- 
+class pr {
+  public:
+    int count;
+
+    pr() {
+      count = 0;
+    }
+
+    void print(int num) {
+      cout << num << ' ';
+      count++;
+    }
+
+    int getcount() {
+      return count;
+    }
+};
 
 void bfs(vector<vector<int> > graph, int node, int startNum) {
-  bool visited[node];
-  for (int i = 0; i < node; i++) {
+  bool visited[node + 1];
+  for (int i = 0; i <= node; i++) {
     visited[i] = false;
   }
 
   queue q(node);
+  pr a;
 
+  q.push(startNum);
+  a.print(startNum);
+  visited[startNum] = true;
 
-  
-
-  
-  
+  while (a.count < node) {
+    int nodeNum = q.pop();
+    for (int i = 0; i < graph[nodeNum].size(); i++) {
+      if (visited[graph[nodeNum][i]] == false) {
+        q.push(graph[nodeNum][i]);
+        a.print(graph[nodeNum][i]);
+        visited[graph[nodeNum][i]] = true;
+      } 
+    }
+  }
   
 
   
 
 }
 
-class queue {
-  int* head;
-  int* tail;
-  
-
-};
 int main() {
   int node, edge, startNum;
   cin >> node >> edge >> startNum;
