@@ -57,7 +57,7 @@ void quickSort(vector<int> &v, vector<int>::iterator left, vector<int>::iterator
       --j;
     }
     if (i < j) {
-      iter_swap(i ,j);
+      iter_swap(i, j);
     }
   }
   iter_swap(pivot, j);

@@ -1,46 +1,154 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
-#include <iterator>
 
 using namespace std;
 
-void dfs(vector<vector<int>> graph, int numstart) {
-
-}
-
-void bfs(vector<vector<int>> graph, int numstart) {
-  
-}
-
-void quickSort(vector<int> &v, int left, int right) {
-  /*
-  left: pivot 포함 가장 왼쪽 인덱스
-  right: pivot이랑 비교할 가장 오른쪽 인덱스
-  */
-  
-  
-  
-}
-
-void swap(vector<int> &v, int idx1, int idx2) {
-  int temp = v[idx1];
-  v[idx1] = v[idx2];
-  v[idx2] = temp;
-}
-
-int main() {
-  int node, edge, numStart;
-  cin >> node >> edge >> numStart;
-
-  vector<vector<int>> graph(node);
-
-  for (int i = 0; i < edge; i++) {
-    int a, b;
-    cin >> a >> b;  
-    graph[a].push_back(b); // 벡터에 값 넣기
+void quickSort (vector<int> &v, vector<int>::iterator left, vector<int>::iterator right) {
+  if (left >= right) {
+    return;
   }
 
+  vector<int>::iterator pivot = left;
+  vector<int>::iterator i = left + 1;
+  vector<int>::iterator j = right;
+
+  while (i <= j) {
+    while (i <= right && *i <= *pivot) {
+      ++i;
+    }
+    while (j > left && *j > *pivot) {
+      --j;
+    }
+    if (i < j) {
+      iter_swap(i, j);
+    }
+  }
+  iter_swap(pivot, j);
+  quickSort(v, left, j - 1);
+  quickSort(v, j + 1, right);
+}
+
+
+void dfs() {
+
+}
+
+class queue {
+  public:
+  int* head;
+  int* tail;
+  int size; // the maximum size that queue can store
+  int count; // how many elements are in the queue
+
+  int* arr; // in order to maintain the memory even if the constructor function is quit.
+  int* arrHead;
+  int* arrTail;
+
+  queue(int size1) {
+    size = size1;
+
+    arr = new int[size];
+    for (int i = 0; i < size; i++) {
+      arr[i] = 0; // initialize
+    }
+
+    head = &arr[0];
+    tail = &arr[0];
+
+    arrHead = &arr[0];
+    arrTail = &arr[size - 1];
+
+    count = 0;
+  }
+
+
+  void push(int elem) {
+    if (count == size) {
+      cout << "the queue is fully occupied" << endl;
+      return;
+    }
+
+    *tail = elem;
+    if (tail == arrTail) {
+      tail = arrHead;
+    } else {
+      tail++;
+    }
+    count++;
+  }
+
+  int pop() {
+    if (count == 0) {
+      cout << "the queue is empty. the returned value is meaningless" << endl;
+      return -1;
+    }
+    int output = *head;
+    if (head == arrTail) {
+      head = arrHead;
+    } else {
+      head++;
+    }
+    return output;
+  }
+
+};
+
+ 
+
+void bfs(vector<vector<int> > graph, int node, int startNum) {
+  bool visited[node];
+  for (int i = 0; i < node; i++) {
+    visited[i] = false;
+  }
+
+  queue q(node);
+
+
   
+
+  
+  
+  
+
+  
+
+}
+
+class queue {
+  int* head;
+  int* tail;
+  
+
+};
+int main() {
+  int node, edge, startNum;
+  cin >> node >> edge >> startNum;
+
+  // node 이름이 1부터 시작하므로, 편의를 위해 0번 인덱스는 비워둔다
+  vector<vector<int> > graph(node + 1); 
+
+  int a, b;
+  for (int i = 0; i < edge; i++) {
+    cin >> a >> b;
+    graph[a].push_back(b);
+    graph[b].push_back(a);
+  }
+
+  // 탐색을 위해 각 노드에 연결된 다른 노드들을 오름차순으로 정렬한다.
+  // 최적화를 위해 정렬 알고리즘은 quickSort를 사용한다.
+  for (int i = 1; i <= node; i++) {
+    quickSort(graph[i], graph[i].begin(), graph[i].end() - 1);
+  }
+  
+
+
+  //test
+  for (int i = 1; i <= node; i++) {
+    cout << i << "th node" << endl;
+    for (int j = 0; j < graph[i].size(); j++) {
+      cout << graph[i][j] << ' ';
+    } 
+    cout << endl;
+  }
   return 0;
 }
