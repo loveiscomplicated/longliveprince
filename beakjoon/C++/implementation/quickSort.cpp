@@ -4,42 +4,79 @@
 
 using namespace std;
 
-void swap(vector<int> &v, int idx1, int idx2) {
-  vector<int>::iterator iter1 = v.begin() + idx1;
-  vector<int>::iterator iter2 = v.begin() + idx2;
-  iter_swap(iter1, iter2);
-}
+// find current index of iterator
+// distance(v.begin(), low);
 
-void quickSort(vector<int> &v, int left, int right) {
+// swaping value by iterator
+// iter_swap(iter1, iter2)
+
+void quickSort(vector<int> &v, vector<int>::iterator left, vector<int>::iterator right) {
   /*
-  left: pivot 포함 가장 왼쪽 인덱스, 즉 pivot의 인덱스
-  right: pivot이랑 비교할 가장 오른쪽 인덱스
+  v: 정렬을 진행할 벡터
+  pivotIter: 정렬이 이루어질 범위의 왼쪽 끝
+  right: 정렬이 이루어질 범위의 오른쪽 끝
+
+
+  1
+  만약 left가 right보다 왼쪽에 있을 때
+
+    (2-1)
+    만약 left가 pivot보다 작거나 같다면
+      ++left
+    그렇지 않다면
+      left stop
+    left stop할 때까지 반복
+
+    (2-2)
+    만약 right가 pivot보다 크다면
+      --right
+    그렇지 않다면
+      right stop
+    right stop할 때까지 반복
+
+
+    left와 right 둘 다 stop했다면
+      left와 right swap
+      다시 2-1부터 진행
+    
+  그렇지 않다면 right과 pivot을 swap
   */
-  if (left == right) 
-  { 
-    // 1개를 sort해야 하는 경우, 바로 리턴
-    return;
-  } else if ((left + 1) == right) {
-    if (v[left] > v[right]) {
-      // swap
-      swap(v, left, right);
-    }
-    return;
+
+  if (left >= right) {
+    return; // Base case: return when the left index is greater than or equal to right index
   }
-  
-  int pivot = v[left];
-  
-  vector<int>::iterator iterLeft = v.begin() + left + 1;
-  vector<int>::iterator iterRight = v.begin() + right;
 
-  
-  
-  
-  
-
+  vector<int>::iterator pivot = left;
+  vector<int>::iterator i = left + 1;
+  vector<int>::iterator j = right;
+  while(i <= j) {
+    while (i <= right && *i <= *pivot) {
+      ++i;
+    }
+    while (j > left && *j > *pivot) {
+      --j;
+    }
+    if (i < j) {
+      iter_swap(i ,j);
+    }
+  }
+  iter_swap(pivot, j);
+  quickSort(v, left, j - 1);
+  quickSort(v, j + 1, right);
 }
+
 
 
 int main() {
+
+  // test case 1
+  vector<int> v1 = {6,5,4,3,2,1};
+  vector<int>::iterator pivot = v1.begin();
+  vector<int>::iterator right = v1.end() - 1;
+  quickSort(v1, pivot, right);
+  
+  for (int num : v1) {
+    cout << num << endl;
+  }
   return 0;
 }
