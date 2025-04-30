@@ -29,9 +29,74 @@ void quickSort (vector<int> &v, vector<int>::iterator left, vector<int>::iterato
 }
 
 
-void dfs() {
+void dfs(vector<vector<int> > graph, int node, int startNum) {
+  bool visited[node + 1];
+  for (int i = 0; i <= node; ++i) {
+    visited[i] = false;
+  }
 
+  stack stk(node);
+  pr p;
+
+  // stack에 startNum 넣기
+
+  // Stack에서 하나 꺼내기
+  // 거기 노드로 이동
+  // 앞에서부터 들어갈 수 있는지 확인
+  // 들어갈 수 있으면
+  //  스택에 푸쉬하고
+  //  출력하고
+  //  다음 노드로 이동 -> 앞에서부터 들어갈 수 있는지 확인인
+  // 들어갈 수 없으면 
+  // 스택에서 하나 꺼내기
+  // 그 노드로 이동 -> 앞에서부터 들어갈 수 있는지 확인
+
+  int* currentNode = &graph[stk.pop()][0];
+
+  bool* visit(vector<int>*& currentNode, bool*& visited) {
+    
+  }
+
+
+  
+
+  
 }
+class stack {
+  public:
+    int* head;
+    int* arr;
+    int size;
+    int count;
+
+    stack(int size1) {
+      arr = new int[size1];
+      size = size1;
+      head = &arr[0];
+      count = 0;
+    }
+
+    void push(int elem) {
+      if (count == size) {
+        cout << "stackFullError" << endl;
+        return ;
+      }
+      ++head;
+      *head = elem;
+      ++count;
+    }
+
+    int pop() {
+      if (count == 0) {
+        cout << "stack is empty" << endl;
+        return;
+      }
+      int temp = *head;
+      --head;
+      return temp;
+    }
+};
+
 
 class queue {
   public:
@@ -92,7 +157,7 @@ class queue {
 
 };
 
-class pr {
+class pr { // 출력, 그리고 여태까지 몇 번 출력했는지 알 수 있는 함수
   public:
     int count;
 
@@ -111,7 +176,7 @@ class pr {
 };
 
 void bfs(vector<vector<int> > graph, int node, int startNum) {
-  bool visited[node + 1];
+  bool visited[node + 1]; // random access가 가능하다는 것이 좋다 ㅋ.ㅋ
   for (int i = 0; i <= node; i++) {
     visited[i] = false;
   }
@@ -133,10 +198,6 @@ void bfs(vector<vector<int> > graph, int node, int startNum) {
       } 
     }
   }
-  
-
-  
-
 }
 
 int main() {
