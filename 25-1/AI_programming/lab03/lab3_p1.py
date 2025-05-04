@@ -1,16 +1,22 @@
 def CarSimulation(N, M):
-    """asdfasdfasdf"""
+    """
+    Car simulation
+    param: 
+        N: Number of rows
+        M: Number of columns
+    returns:
+        k, x, y
+    """
     k = -1
     x = 1
     count = 0
     y = 1
-    Nc = N - 1 # copy of N
-    Mc = M - 1 # copy of M
+    Nc = N - 1 # copy of N in order not to directly modify the value
+    Mc = M - 1 # copy of M in order not to directly modify the value
 
     status = 'R'
     
     while True:
-        print(x, y, status, Nc, Mc)
         if status == 'R' and count == 0:
             if Nc == 0:
                 return k, x, y

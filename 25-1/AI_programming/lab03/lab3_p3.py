@@ -1,6 +1,10 @@
 def FindMaxValue(D1,D2,D3):
-    """asdfasdfasdf"""
-    def find_opp(index):
+    """
+    finding the max value by trial and error
+    param: dice list
+    returns: the maximum value of given condition
+    """
+    def find_opp(index): # find the opposite side of given face
         if index == 0:
             opp = 4
         elif index == 1:
@@ -29,7 +33,7 @@ def FindMaxValue(D1,D2,D3):
                         partial_sum_d3 = sum(D3) - D3[k] - D3[opp_2]
                         temp_sum = partial_sum_d1 + partial_sum_d2 + partial_sum_d3
                         sum1.append(temp_sum)
-    if len(sum1) == 0:
+    if len(sum1) == 0: # if we cannot make the stack, return -1
         Max_value = -1
         return Max_value
     else:

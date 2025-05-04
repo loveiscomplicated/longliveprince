@@ -1,5 +1,11 @@
 def FindLongestWord(file_name):
-    """asdfasdfasdfa"""
+    """
+    finding the longest word in the given test file(.txt)
+    param: 
+        file_name: name of the file
+    returns:
+        the longest word
+    """
     with open(file_name, 'r') as f:
         content = f.read()
     
