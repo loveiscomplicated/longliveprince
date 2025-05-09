@@ -57,12 +57,10 @@ void heapify(std::vector<int> &array, int currentIndex) {
   int rightIdx = currentIndex * 2 + 1;
   
   if (leftIdx < upperBound && array[largest] < array[leftIdx]) {
-    // swap
-    std::swap(largest, leftIdx);
+    largest = leftIdx;
   }
   if (rightIdx < upperBound && array[largest] < array[rightIdx]) {
-    // swap
-    std::swap(largest, rightIdx);
+    largest = rightIdx;
   }
   if (largest != currentIndex) {
     // heapify()
