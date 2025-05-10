@@ -1,0 +1,5 @@
+if(EXISTS "/home/loveiscomplicated/github_repo/longliveprince/25-1/data_str/assignment_2/assignment_2/build/runTests[1]_tests.cmake")
+  include("/home/loveiscomplicated/github_repo/longliveprince/25-1/data_str/assignment_2/assignment_2/build/runTests[1]_tests.cmake")
+else()
+  add_test(runTests_NOT_BUILT runTests_NOT_BUILT)
+endif()

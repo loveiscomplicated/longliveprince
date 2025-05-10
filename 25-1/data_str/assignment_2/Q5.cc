@@ -61,6 +61,10 @@ void radixSort(std::vector<int>& nums) {
 }
 
 std::vector<int> findDuplicates(std::vector<int>& nums) {
+  if (nums.empty()) {
+    throw std::logic_error("empty input vector");
+  }
+
   radixSort(nums);
   std::vector<int> result;
 
