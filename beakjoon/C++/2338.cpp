@@ -6,38 +6,27 @@
 using namespace std;
 
 vector<int> addvec(vector<int>& vecA, vector<int>& vecB) {
-  int sizeBig;
-  int sizeSmall;
-  bool AisBig; // True - vecA // False - vecB
-  if (vecA.size() <= vecB.size()) {
-    sizeBig = vecB.size();
-    sizeSmall = vecA.size();
-    AisBig = false;
-  } else {
-    sizeBig = vecA.size();
-    sizeSmall = vecB.size();
-    AisBig = true;
+  //assume that vecA is bigger than vecB
+  vector<int> result(vecA.size() + 1, 0);
+  for (int i = 0; i < vecB.size(); ++i) {
+    result[i] += vecA[i] + vecB[i];
   }
 
-  vector<int> result(sizeBig, 0);
-
-  for (int i = 0; i < sizeSmall; ++i) {
-    int x = vecA[i] + vecB[i];
-    result[i] += x;
-    
-    result[i + 1] += result[i] - (result[i] % 10);
-    result[i] %= 10;
+  for (int i = vecB.size(); i < vecA.size(); ++i) {
+    result[i] += vecA[i];
   }
 
-  for (int i = sizeSmall; i < sizeBig; ++i) {
-    if (AisBig) {
-      result[i] += vecA[i];
-    } else {
-      result[i] += vecB[i];
+  for (int i = 0; i < vecA.size(); ++i) {
+    if (result[i] >= 10) {
+      result[i + 1] = (result[i] - (result[i] % 10)) / 10;
+      result[i] = result[i] % 10;
     }
   }
-  
-  return result;
+  vector<int> new_result;
+  for (int i = result.size() - 1; i >= 0; --i) {
+    new_result.push_back(result[i]);
+  }
+  return new_result;
 }
 
 
