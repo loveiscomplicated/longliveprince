@@ -61,7 +61,7 @@ void calculatorLong::add(string& A, string& B) {
         result.numVec = subtractAbs(A, B);
         result.positive = true;
       } else {
-        result.numVec = subtractAbs(A, B);
+        result.numVec = subtractAbs(B, A);
         result.positive = false;
       }
     } else if (numA.positive == false && numB.positive == true) {
@@ -69,7 +69,7 @@ void calculatorLong::add(string& A, string& B) {
         result.numVec = subtractAbs(A, B);
         result.positive = false;
       } else {
-        result.numVec = subtractAbs(A, B);
+        result.numVec = subtractAbs(B, A);
         result.positive = true;
       }
     }
