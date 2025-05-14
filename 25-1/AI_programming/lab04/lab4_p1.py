@@ -9,7 +9,7 @@ while running:
     if user_input1 == 'q': # terminating condition
         break
     else:
-        user_input2 = int(input("Enter a weight in kg: "))
+        user_input2 = int(input("Enter the weight in kg: "))
         idx = -1
         for i in range(len(lst)):
             if user_input1 == lst[i][0]:

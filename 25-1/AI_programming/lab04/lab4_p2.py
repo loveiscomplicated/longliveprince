@@ -1,21 +1,33 @@
 H = int(input("Display height?: "))
-numbers_to_print = int(input("Up to which number to print?: "))
+N = int(input("Up to which number to print?: "))
 
 lst = []
 
-# initial status of the program
 for i in range(H):
     lst.append([])
 
-lst[0].append(1)
-ptr = 0 # indicates the current row
-step = 2 # indicates the current step 
-count = 1
+def validate(coo, H):
+    x = coo[0]
+    y = coo[1]
+    
+    if x < 0:
+        return False
+    if y >= H:
+        return False
+    return True
 
-while numbers_to_print != count:
-    count += 1
-    if step == 2:
-        lst[ptr].append(count)
-        
-    continue
+    
+# step 1 excecuting...
+lst[0].append(1)
+coo = [1, 0]
+
+# making step 2 function
+def step2()
+
+
+# making step 3 function
+
+    
+
+# looping step 2 and 3
 
