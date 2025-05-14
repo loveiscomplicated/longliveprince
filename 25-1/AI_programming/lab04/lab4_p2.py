@@ -20,9 +20,20 @@ def validate(coo, H):
 # step 1 excecuting...
 lst[0].append(1)
 coo = [1, 0]
+class status:
+    def status(self, H, N, cooordinate):
+        self.coo = cooordinate
+        self.H = H
+        self.N = N
+        
+    def validate1(self):
+        x = self.coo[0]
+        y = self.coo[1]
+        if 
+        
 
 # making step 2 function
-def step2()
+def step2():
 
 
 # making step 3 function
