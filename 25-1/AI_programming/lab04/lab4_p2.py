@@ -21,11 +21,11 @@ def validate_num(MyStatus):
 # making step 2 function
 def bottom_left(MyStatus : status, lst : list):
     if not validate_num(MyStatus):
-        return "Over"
+        return MyStatus, lst, "Over"
     if not validate_wall(MyStatus):
         MyStatus.coordinate[0] += 1
         MyStatus.coordinate[1] -= 1
-        return "Wall Hit"
+        return MyStatus, lst, "Wall Hit"
     
     x = MyStatus.coordinate[0]
     lst[x].append(MyStatus.num)
@@ -41,7 +41,7 @@ def step_2(MyStatus : status, lst : list):
     if not validate_num(MyStatus):
         return "Over"
     MyStatus.coordinate[0] += 1
-    bottom_left(MyStatus, lst)
+    return bottom_left(MyStatus, lst)
 
 
 # making step 3 function
@@ -65,7 +65,8 @@ def upper_right(MyStatus : status, lst : list):
 def step_3(MyStatus : status, lst : list):
     # If bottom direction is available, go bottom once
     bottom = status(MyStatus.H, MyStatus.N, MyStatus.coordinate, MyStatus.num)
-    
+    bottom.coordinate[1] += 1
+    if MyStatus.coordinate[1] += 
 
 
 H = int(input("Display height?: "))
