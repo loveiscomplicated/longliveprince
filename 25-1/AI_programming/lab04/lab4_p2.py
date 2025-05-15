@@ -6,15 +6,25 @@ class status:
         status.coordinate = coordinate # 지금 값을 넣어야 할 자리를 뜻함
         status.num = num # 이제 넣을 값
 
-def validate(coordinate):
-    x = coordinate[0]
-    y = coordinate[1]
+def validate_wall(MyStatus):
+    x = MyStatus.coordinate[0]
+    y = MyStatus.coordinate[1]
     if x < 0 or y >= H:
         return False
     return True
 
-def bottom_left(MyStatus, lst):
-    if not validate(MyStatus.coordinate):
+def validate_num(MyStatus):
+    if MyStatus.num > MyStatus.N:
+        return False
+    return True
+
+# making step 2 function
+def bottom_left(MyStatus : status, lst : list):
+    if not validate_num(MyStatus):
+        return "Over"
+    if not validate_wall(MyStatus):
+        MyStatus.coordinate[0] += 1
+        MyStatus.coordinate[1] -= 1
         return "Wall Hit"
     
     x = MyStatus.coordinate[0]
@@ -25,6 +35,37 @@ def bottom_left(MyStatus, lst):
     MyStatus.coordinate[1] += 1
     
     bottom_left(MyStatus, lst)
+
+def step_2(MyStatus : status, lst : list):
+    # go right once
+    if not validate_num(MyStatus):
+        return "Over"
+    MyStatus.coordinate[0] += 1
+    bottom_left(MyStatus, lst)
+
+
+# making step 3 function
+def upper_right(MyStatus : status, lst : list):
+    if not validate_num(MyStatus):
+        return "Over"
+    if not validate_wall(MyStatus):
+        MyStatus.coordinate[0] -= 1
+        MyStatus.coordinate[1] += 1
+        return "Wall Hit"
+    
+    x = MyStatus.coordinate[0]
+    lst[x].append(MyStatus.num)
+
+    MyStatus.num += 1
+    MyStatus.coordinate[0] += 1
+    MyStatus.coordinate[1] -= 1
+    
+    upper_right(MyStatus, lst)
+
+def step_3(MyStatus : status, lst : list):
+    # If bottom direction is available, go bottom once
+    bottom = status(MyStatus.H, MyStatus.N, MyStatus.coordinate, MyStatus.num)
+    
 
 
 H = int(input("Display height?: "))
@@ -38,15 +79,10 @@ for i in range(H):
 # step 1 excecuting...
 lst[0].append(1)
 coordinate = [1, 0] # 앞으로 넣어야 할 위치
-Mystatus = status(H, N, coordinate, 2) # 앞으로 넣어야 할 값
-
-# making step 2 function
+MyStatus = status(H, N, coordinate, 2) # 2 == 앞으로 넣어야 할 값
 
 
-
-# making step 3 function
-
-    
+# step 2 excecuting...
 
 # looping step 2 and 3
 
