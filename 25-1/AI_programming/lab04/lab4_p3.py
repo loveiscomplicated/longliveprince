@@ -1,10 +1,8 @@
-import math
-
-
+# getting the user input to the program
 user = int(input("Enter the taxable income in USD: "))
 
+# initialize the result and then use if, elif, else
 result = 0
-
 
 if user <= 750:
     result = user * 0.02

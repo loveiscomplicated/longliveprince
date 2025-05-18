@@ -1,12 +1,12 @@
 import operator
 
-# initial status of program
+# initial status of program which is True
 running = True
 lst = []
 
 while running:
     user_input1 = input("Enter a fruit type (q to quit): ")
-    if user_input1 == 'q': # terminating condition
+    if user_input1 == 'q': # terminating condition if the user inputs 'q'
         break
     else:
         user_input2 = int(input("Enter the weight in kg: "))

@@ -1,89 +1,78 @@
-
-class status:
-    def status(self, H, N, coordinate, num):
-        status.H = H
-        status.N = N
-        status.coordinate = coordinate # 지금 값을 넣어야 할 자리를 뜻함
-        status.num = num # 이제 넣을 값
-
-def validate_wall(MyStatus):
-    x = MyStatus.coordinate[0]
-    y = MyStatus.coordinate[1]
-    if x < 0 or y >= H:
-        return False
-    return True
-
-def validate_num(MyStatus):
-    if MyStatus.num > MyStatus.N:
-        return False
-    return True
-
-# making step 2 function
-def bottom_left(MyStatus : status, lst : list):
-    if not validate_num(MyStatus):
-        return MyStatus, lst, "Over"
-    if not validate_wall(MyStatus):
-        MyStatus.coordinate[0] += 1
-        MyStatus.coordinate[1] -= 1
-        return MyStatus, lst, "Wall Hit"
+def makeCoordList(H, k):
+    """
+    H : height
+    k : x + y 
+        where x and y is the index of 2 dimensional array
     
-    x = MyStatus.coordinate[0]
-    lst[x].append(MyStatus.num)
+    this function makes the list of coordinates
 
-    MyStatus.num += 1
-    MyStatus.coordinate[0] -= 1
-    MyStatus.coordinate[1] += 1
+    returns : coordinate_list
+    """
+    coordinate_list = []
+    x = k
+    y = 0
+
+    while y < H:
+        coordinate_list.append((x, y))
+        x -= 1
+        y += 1
+
+        if x < 0:
+            break
+
+    if k % 2 == 0:
+        coordinate_list = coordinate_list[::-1]
+
+    return coordinate_list
+
+def putValue(H, N):
+    """
+    H : height
+    N : integer values from 1 to N
     
-    bottom_left(MyStatus, lst)
+    puts the values to the coordinate_list
 
-def step_2(MyStatus : status, lst : list):
-    # go right once
-    if not validate_num(MyStatus):
-        return "Over"
-    MyStatus.coordinate[0] += 1
-    return bottom_left(MyStatus, lst)
-
-
-# making step 3 function
-def upper_right(MyStatus : status, lst : list):
-    if not validate_num(MyStatus):
-        return "Over"
-    if not validate_wall(MyStatus):
-        MyStatus.coordinate[0] -= 1
-        MyStatus.coordinate[1] += 1
-        return "Wall Hit"
+    returns : result (list)
+    """
+    lst = []
+    k = 0
+    while len(lst) < N:
+        if len(lst) + len(makeCoordList(H, k)) <= N:
+            lst.extend(makeCoordList(H, k))
+        elif len(lst) < N and len(lst) + len(makeCoordList(H, k)) > N:
+            rightEnd = N - len(lst)
+            lst.extend(makeCoordList(H, k)[:rightEnd])
+        k += 1
     
-    x = MyStatus.coordinate[0]
-    lst[x].append(MyStatus.num)
+    for i in range(len(lst)):
+        lst[i] = (lst[i], i + 1)
 
-    MyStatus.num += 1
-    MyStatus.coordinate[0] += 1
-    MyStatus.coordinate[1] -= 1
+    result = []
+    for i in range(H):
+        result.append([])
     
-    upper_right(MyStatus, lst)
+    for i in lst:
+        result[i[0][1]].append(i[1])
+    
+    return result
 
-def step_3(MyStatus : status, lst : list):
-    # If bottom direction is available, go bottom once
-    bottom = status(MyStatus.H, MyStatus.N, MyStatus.coordinate, MyStatus.num)
-    bottom.coordinate[1] += 1
-    if MyStatus.coordinate[1] += 
-
-
+            
+# initializing the program, H and N are required
 H = int(input("Display height?: "))
 N = int(input("Up to which number to print?: "))
 
-lst = []
+resultList = putValue(H, N)
 
-for i in range(H):
-    lst.append([])
-    
-# step 1 excecuting...
-lst[0].append(1)
-coordinate = [1, 0] # 앞으로 넣어야 할 위치
-MyStatus = status(H, N, coordinate, 2) # 2 == 앞으로 넣어야 할 값
+# making resultList into string so that the program can print within given conditions
+for i in resultList:
+    resultstr = ""
+    for j in i:
+        strJ = str(j)
+        if len(strJ) < 3:
+            space = 3 - len(strJ)
+            strJ = ' ' * space + strJ
+        resultstr += strJ
+    print(resultstr)
 
 
-# step 2 excecuting...
-
-# looping step 2 and 3
 

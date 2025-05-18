@@ -1,11 +1,20 @@
 def lookAndSaySequence(n ,l):
     """
+    n : initial integer
+    l : the length of sequence
+
     returns the list (sequence) of integers 
     and whether the sequence includes a cycle as a boolean flag 
     for the given initial integer n and the length of sequence l
     """
     def dictToListElem(dic : dict):
-        """makes dict to string that is appropriate to output list element"""
+        """
+        dic : dictionary used in the process
+
+        makes dict to string that is appropriate to output list element
+        
+        returns : list element
+        """
         sorted_dict = sorted(dic.items()) # sorting by keys in order to make it to element of result list
         result = ''
         for i in sorted_dict:
@@ -14,7 +23,13 @@ def lookAndSaySequence(n ,l):
         return int(result)
     
     def makeDict(prevN : int):
-        """calculates how many given numbers has appeared and stores as dict"""
+        """
+        prevN : previous integer that has to be computed
+
+        calculates how many given numbers has appeared and stores as dict
+        
+        returns a dictionary that stores the number of occurance
+        """
         resultDict  = dict()
         numStr = str(prevN) # numbers that converted into string (all keys are string)
         for i in range(len(numStr)):
@@ -26,7 +41,13 @@ def lookAndSaySequence(n ,l):
         return resultDict
 
     def flag(lst : list):
-        """checks whether given list has a cycle"""
+        """
+        lst : list that has to be checked
+
+        checks whether given list has a cycle
+        
+        returns : True if the list is valid
+        """
         maxCycle = len(lst) // 2
         cycleSize = 1
         while cycleSize <= maxCycle:
