@@ -14,3 +14,13 @@ beakjoon/C++/memo.cpp
 beakjoon/C++/2338
 beakjoon/C++/2338
 beakjoon/C++/2338t
+
+# CMake build directory
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Optional: VSCode CMake extension stuff
+/.vscode/
