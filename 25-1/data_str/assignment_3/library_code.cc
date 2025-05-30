@@ -94,7 +94,17 @@ std::pair<Node *, Node *> splitBST(Node *root, int target) {
   // *****************
   // IMPLEMENT IT HERE
   // *****************
-  return {}; // <<-- EDIT THIS LINE TOO!
+  if (!root) return {nullptr, nullptr};
+
+  if (root->value <= target) {
+    auto [l, r] = splitBST(root->right, target);
+    root->right = l;
+    return {root, r};
+  } else {
+    auto [l, r] = splitBST(root->left, target);
+    root->left = r;
+    return {l, root};
+  }
 }
 
 SplitResult solveSplitBST(int target, const std::vector<int> &preorder,
@@ -162,6 +172,17 @@ void convertBSTToCDLLHelper(Node *root, Node *&head, Node *&prev) {
   // *****************
   // IMPLEMENT IT HERE
   // *****************
+  if (root == nullptr) return;
+                                                                                                                                                                                                                                                                                                            
+  convertBSTToCDLLHelper(root->left, head, prev);
+  if (prev == nullptr) {
+    head = root;
+  } else {
+    prev->right = root;
+    root->left = prev;
+  }
+  prev = root;
+  convertBSTToCDLLHelper(root->right, head, prev);
 }
 
 // Question 4: Convert BST to CDLL
@@ -171,7 +192,15 @@ Node *convertBSTToCDLL(Node *root) {
   // *****************
   // IMPLEMENT IT HERE
   // *****************
-  return {}; // <<-- EDIT THIS LINE TOO!
+  if (root == nullptr) return nullptr;
+  Node* prev = nullptr;
+  Node* head = nullptr;
+  convertBSTToCDLLHelper(root, head, prev);
+  
+  head->left = prev;
+  prev->right = head;
+  
+  return head;
 }
 
 CDLLResult solveBSTToCDLL(const std::vector<int> &preorder,
@@ -200,9 +229,23 @@ CDLLResult solveBSTToCDLL(const std::vector<int> &preorder,
 //                  Problem 5
 // --------------------------------------------
 
+// inheriting struct node -> to include pointer of parent node
+struct AVLNode : public Node {
+  Node *parent{};
+  explicit AVLNode(int x) : Node(x), parent(nullptr) {};
+};
+
+int max(int a, int b) {
+  if (a >= b) {
+    return a;
+  } 
+  return b;
+}
+
 int height(const Node *node) {
   if (node == nullptr)
     return 0;
+
   return node->height;
 }
 
@@ -210,34 +253,87 @@ void updateHeight(Node *node) {
   // *****************
   // IMPLEMENT IT HERE
   // *****************
+  
+  node->height = 1 + max(height(node->left), height(node->right));
 }
 
 int getBalance(const Node *node) {
   // *****************
   // IMPLEMENT IT HERE
   // *****************
-  return {}; // <<-- EDIT THIS LINE TOO!
+  int leftHeight = height(node->left);
+  int rightHeight = height(node->right);
+
+  return rightHeight - leftHeight;
 }
 
 Node *rotateRight(Node *y) {
   // *****************
   // IMPLEMENT IT HERE
   // *****************
-  return {}; // <<-- EDIT THIS LINE TOO!
+  Node *x = y->left;
+  Node *temp = x->right;
+  x->right = y;
+  y->left = temp;
+
+  updateHeight(y); // update lower one first
+  updateHeight(x);
+  
+  return x;
 }
 
 Node *rotateLeft(Node *x) {
   // *****************
   // IMPLEMENT IT HERE
   // *****************
-  return {}; // <<-- EDIT THIS LINE TOO!
+
+  Node *y = x->right;
+  Node *temp = y->left;
+  y->left = x;
+  x->right = temp;
+
+  updateHeight(x);
+  updateHeight(y);
+  return y; // <<-- EDIT THIS LINE TOO!
 }
 
 Node *insertAVL(Node *node, int key) {
   // *****************
   // IMPLEMENT IT HERE
   // *****************
-  return {}; // <<-- EDIT THIS LINE TOO!
+  if (node == nullptr) {
+    return new Node(key);
+  }
+  // insert new node to the right position
+  if (key < node->value) {
+    node->left = insertAVL(node->left, key);
+  } else {
+    node->right = insertAVL(node->right, key);
+  }
+
+  // in the instance if recursion
+  updateHeight(node);
+  
+  // rotate if necessary
+  if (getBalance(node) < -1 && key < node->left->value) {
+    // rotate right
+    return rotateRight(node);
+  
+  } else if (getBalance(node) < -1 && key > node->left->value) {
+    // left right
+    node->left = rotateLeft(node->left);
+    return rotateRight(node);
+    
+  } else if (getBalance(node) > 1 && key > node->right->value) {
+    // left
+    return rotateLeft(node);
+
+  } else if (getBalance(node) > 1 && key > node->right->value) {
+    // right left
+    node->right = rotateRight(node->right);
+    return rotateLeft(node);
+  }
+  return node;
 }
 
 AVLResult solveInsertAVL(const std::vector<int> &keys) {

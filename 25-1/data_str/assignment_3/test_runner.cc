@@ -135,6 +135,57 @@ TEST(splitBST, RandomLarge) {
 
 // Add your own test cases here (Create a new test case under the test suite named splitBST)
 
+TEST(splitBST, SingleNode) {
+  int target{5};
+  std::vector<int> preorder{5};
+  std::vector<int> inorder{5};
+
+  std::vector<int> expected_preorder1{5};
+  std::vector<int> expected_inorder1{5};
+  std::vector<int> expected_preorder2{};
+  std::vector<int> expected_inorder2{};
+
+  SplitResult result{solveSplitBST(target, preorder, inorder)};
+  EXPECT_EQ(result.preorder1, expected_preorder1);
+  EXPECT_EQ(result.inorder1, expected_inorder1);
+  EXPECT_EQ(result.preorder2, expected_preorder2);
+  EXPECT_EQ(result.inorder2, expected_inorder2);
+}
+
+TEST(splitBST, AllLessThanTarget) {
+  int target{100};
+  std::vector<int> preorder{20, 10, 5, 15, 30, 25, 35};
+  std::vector<int> inorder{5, 10, 15, 20, 25, 30, 35};
+
+  std::vector<int> expected_preorder1{20, 10, 5, 15, 30, 25, 35};
+  std::vector<int> expected_inorder1{5, 10, 15, 20, 25, 30, 35};
+  std::vector<int> expected_preorder2{};
+  std::vector<int> expected_inorder2{};
+
+  SplitResult result{solveSplitBST(target, preorder, inorder)};
+  EXPECT_EQ(result.preorder1, expected_preorder1);
+  EXPECT_EQ(result.inorder1, expected_inorder1);
+  EXPECT_EQ(result.preorder2, expected_preorder2);
+  EXPECT_EQ(result.inorder2, expected_inorder2);
+}
+
+TEST(splitBST, AllGreaterThanTarget) {
+  int target{1};
+  std::vector<int> preorder{5, 3, 2, 4, 8, 7, 9};
+  std::vector<int> inorder{2, 3, 4, 5, 7, 8, 9};
+
+  std::vector<int> expected_preorder1{};
+  std::vector<int> expected_inorder1{};
+  std::vector<int> expected_preorder2{5, 3, 2, 4, 8, 7, 9};
+  std::vector<int> expected_inorder2{2, 3, 4, 5, 7, 8, 9};
+
+  SplitResult result{solveSplitBST(target, preorder, inorder)};
+  EXPECT_EQ(result.preorder1, expected_preorder1);
+  EXPECT_EQ(result.inorder1, expected_inorder1);
+  EXPECT_EQ(result.preorder2, expected_preorder2);
+  EXPECT_EQ(result.inorder2, expected_inorder2);
+}
+
 // ---------------------------------------------
 //                  Problem 4
 // ---------------------------------------------
@@ -197,6 +248,32 @@ TEST(convertBSTToCDLL, RandomLarge) {
 
 // Add your own test cases here (Create a new test case under the test suite named convertBSTToCDLL)
 
+TEST(convertBSTToCDLL, SingleNode) {
+  std::vector<int> preorder{42};
+  std::vector<int> inorder{42};
+
+  std::vector<int> expected_successor_traversal{42};
+  std::vector<int> expected_predecessor_traversal{42};
+
+  CDLLResult result{solveBSTToCDLL(preorder, inorder)};
+  EXPECT_EQ(result.successor_traversal, expected_successor_traversal);
+  EXPECT_EQ(result.predecessor_traversal, expected_predecessor_traversal);
+}
+
+TEST(convertBSTToCDLL, NegativeValues) {
+  std::vector<int> preorder{-10, -20, -5};
+  std::vector<int> inorder{-20, -10, -5};
+
+  std::vector<int> expected_successor_traversal{-20, -10, -5};
+  std::vector<int> expected_predecessor_traversal{-20, -5, -10};
+
+  CDLLResult result{solveBSTToCDLL(preorder, inorder)};
+  EXPECT_EQ(result.successor_traversal, expected_successor_traversal);
+  EXPECT_EQ(result.predecessor_traversal, expected_predecessor_traversal);
+}
+
+
+
 // ---------------------------------------------
 //                  Problem 5
 // ---------------------------------------------
@@ -251,3 +328,22 @@ TEST(insertAVL, RandomLarge) {
 }
 
 // Add your own test cases here (Create a new test case under the test suite named insertAVL)
+
+TEST(insertAVL, SingleNode) {
+  std::vector<int> keys{100};
+  std::vector<int> expected_preorder{100};
+  std::vector<int> expected_inorder{100};
+
+  AVLResult result{solveInsertAVL(keys)};
+  EXPECT_EQ(result.preorder, expected_preorder);
+  EXPECT_EQ(result.inorder, expected_inorder);
+}
+
+TEST(insertAVL, AllNegative) {
+  std::vector<int> keys{-10, -20, -30, -5, -15};
+  std::vector<int> expected_inorder{-30, -20, -15, -10, -5};
+
+  AVLResult result{solveInsertAVL(keys)};
+  std::vector<int> result_inorder{result.inorder};
+  EXPECT_EQ(result_inorder, expected_inorder);
+}
