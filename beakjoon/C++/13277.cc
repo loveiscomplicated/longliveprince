@@ -30,6 +30,12 @@ vector<int> mul(vector<int> A, vector<int> B) {
   return result;
 }
 
+// karachuba algorithm
+vector<int> karachuba(vector<int> A, vector<int> B) {
+  
+  return {};
+}
+
 // print vector<int> result into number format
 void printlnln(vector<int> result) {
   for (int i = result.size() - 1; i >= 0; --i) {
