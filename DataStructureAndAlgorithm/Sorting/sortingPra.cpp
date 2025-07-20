@@ -7,11 +7,27 @@ void insertionSort(std::vector<int>& arr) {
   for (int i = 1; i < n; ++i) {
     int key = arr[i];
     int j = i - 1;
-    while (j >=0 && arr[j] > key) {
+    while (j >= 0 && key < arr[j]) {
       arr[j + 1] = arr[j];
       --j;
     }
     arr[j + 1] = key;
+  }
+}
+
+void bubbleSort(std::vector<int>& arr) {
+  int n = arr.size();
+  for (int i = 0; i < n - 1; ++i) {
+    bool swapped = false;
+    for (int j = 0; j < n - 1 - i; ++j) {
+      if (arr[j] > arr[j + 1]) {
+        std::swap(arr[j], arr[j + 1]);
+        swapped = true;
+      }
+    }
+    if (!swapped) {
+      break;
+    }
   }
 }
 
@@ -24,7 +40,9 @@ void selectionSort(std::vector<int>& arr) {
         min_idx = j;
       }
     }
-    std::swap(arr[min_idx], arr[i]);
+    if (min_idx != i) {
+      std::swap(arr[min_idx], arr[i]);
+    }
   }
 }
 
@@ -49,7 +67,7 @@ void heapSort(std::vector<int>& arr) {
   for (int i = n / 2 - 1; i >= 0; --i) {
     heapify(arr, n, i);
   }
-  for (int i = n - 1; i >= 0; --i) {
+  for (int i = n - 1; i >= 1; --i) {
     std::swap(arr[0], arr[i]);
     heapify(arr, i, 0);
   }

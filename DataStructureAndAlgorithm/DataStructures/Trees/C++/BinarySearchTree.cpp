@@ -36,23 +36,23 @@ void BinarySearchTree::remove(int data) {
 }
 
 BinarySearchTree::Node* BinarySearchTree::remove(Node* node, int data) {
-    if (node == nullptr) return node;
+    if (node == nullptr) return node; // 아예 비어 있거나 data를 못 찾은 경우
 
-    if (data < node->data) {
+    if (data < node->data) { 
         node->left = remove(node->left, data);
     } else if (data > node->data) {
         node->right = remove(node->right, data);
-    } else {
-        if (node->left == nullptr) {
+    } else { // 제거해야 할 위치를 찾은 경우
+        if (node->left == nullptr) { // 자식이 아예 없거나 오른쪽에만 있는 경우
             Node* temp = node->right;
             delete node;
             return temp;
-        } else if (node->right == nullptr) {
+        } else if (node->right == nullptr) { // 자식이 왼쪽에만 있는 경우
             Node* temp = node->left;
             delete node;
             return temp;
         }
-        Node* temp = findMin(node->right);
+        Node* temp = findMin(node->right); // 자식이 둘 있는 경우, 오른쪽 서브트리에서 최솟값을 찾아 덮어씌우기, 원래 최솟값이 있던 자리는 제거
         node->data = temp->data;
         node->right = remove(node->right, temp->data);
     }
