@@ -2,32 +2,28 @@
 #include <vector>
 #include <algorithm>
 
+void bubbleSort(std::vector<int>& arr) {
+  int n = arr.size();
+  for (int i = 0; i < n - 1; ++i) {
+    for (int j = 0; j < n - 1 - i; ++j) {
+      if (arr[j] > arr[j + 1]) {
+        std::swap(arr[j], arr[j + 1]);
+      }
+    }
+  }
+}
+
+
 void insertionSort(std::vector<int>& arr) {
   int n = arr.size();
   for (int i = 1; i < n; ++i) {
     int key = arr[i];
     int j = i - 1;
-    while (j >= 0 && key < arr[j]) {
+    while(j >= 0 && key < arr[j]) {
       arr[j + 1] = arr[j];
       --j;
     }
     arr[j + 1] = key;
-  }
-}
-
-void bubbleSort(std::vector<int>& arr) {
-  int n = arr.size();
-  for (int i = 0; i < n - 1; ++i) {
-    bool swapped = false;
-    for (int j = 0; j < n - 1 - i; ++j) {
-      if (arr[j] > arr[j + 1]) {
-        std::swap(arr[j], arr[j + 1]);
-        swapped = true;
-      }
-    }
-    if (!swapped) {
-      break;
-    }
   }
 }
 
@@ -50,6 +46,7 @@ void heapify(std::vector<int>& arr, int n, int i) {
   int largest = i;
   int left = 2 * i + 1;
   int right = 2 * i + 2;
+  
   if (left < n && arr[largest] < arr[left]) {
     largest = left;
   }
@@ -67,14 +64,13 @@ void heapSort(std::vector<int>& arr) {
   for (int i = n / 2 - 1; i >= 0; --i) {
     heapify(arr, n, i);
   }
-  for (int i = n - 1; i >= 1; --i) {
+  for (int i = n - 1; i >= 0; --i) {
     std::swap(arr[0], arr[i]);
     heapify(arr, i, 0);
   }
 }
 
 int main() {
-
   std::vector<int> myVector = {64, 34, 25, 12, 22, 11, 90};
   std::cout << "정렬 전" << std::endl;
   for (int i = 0; i < myVector.size(); ++i) {
